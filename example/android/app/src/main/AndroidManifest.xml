@@ -10,6 +10,9 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="startapp_example"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="vn.momo.plugin.startapp.STARTAPP_ID" android:value="\ 205922462" />
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

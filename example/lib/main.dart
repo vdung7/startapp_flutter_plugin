@@ -3,7 +3,12 @@ import 'package:startapp/banner.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => MyAppState();
+}
+
+class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -11,12 +16,12 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
             appBar: AppBar(title: const Text('StartApp Example')),
             body: Center(
-              child: Column(
-                children: <Widget>[
-                  Text('Banner sample'),
-                  AdBanner(),
-                ],
-              )
+                child: Column(
+                  children: <Widget>[
+                    Text('Banner sample'),
+                    AdBanner(),
+                  ],
+                )
             )
         )
     );
