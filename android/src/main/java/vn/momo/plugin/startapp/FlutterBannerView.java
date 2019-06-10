@@ -4,6 +4,9 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.startapp.android.publish.ads.banner.Banner;
+import com.startapp.android.publish.ads.banner.BannerListener;
+
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -26,13 +29,32 @@ public class FlutterBannerView implements PlatformView, MethodChannel.MethodCall
     public void onMethodCall(MethodCall methodCall, MethodChannel.Result result) {
         switch (methodCall.method) {
             case "loadAd":
-                while (StartAppBannerPlugin.getBanner() == null) {}
-                bannerContainer.removeAllViews();
-                bannerContainer.addView(StartAppBannerPlugin.getBanner());
+                Banner banner = new Banner(StartAppBannerPlugin.activity(), new BannerListener() {
+                    @Override
+                    public void onReceiveAd(View banner) {
+                        updateContent(banner);
+                    }
+
+                    @Override
+                    public void onFailedToReceiveAd(View banner) {
+                        updateContent(banner);
+                    }
+
+                    @Override
+                    public void onClick(View banner) {
+                        updateContent(banner);
+                    }
+                });
+                banner.loadAd(300, 50);
                 break;
             default:
                 result.notImplemented();
         }
+    }
+
+    private void updateContent(View banner) {
+        bannerContainer.removeAllViews();
+        bannerContainer.addView(banner);
     }
 
     @Override
