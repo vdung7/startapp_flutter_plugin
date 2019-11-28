@@ -14,6 +14,7 @@ import com.startapp.android.publish.adsCommon.StartAppSDK;
 import android.content.pm.PackageItemInfo;
 
 import io.flutter.plugin.common.PluginRegistry;
+import io.flutter.plugin.common.MethodChannel;
 
 /**
  * @author dungvu
@@ -44,6 +45,17 @@ public class StartAppBannerPlugin {
         registrar.platformViewRegistry()
                 .registerViewFactory(
                         PLUGIN_KEY, new BannerFactory(registrar.messenger()));
+
+                
+        new MethodChannel(registrar.view(), "vn.momo.biquote/ad").setMethodCallHandler(
+                (call, result) -> {
+                    if (call.method.equals("showAd")) {
+                        StartAppAd.showAd(mainActivity);
+                        result.success(null);
+                    } else {
+                        result.notImplemented();
+                    }
+                });
     }
 
     public static Activity activity() {
