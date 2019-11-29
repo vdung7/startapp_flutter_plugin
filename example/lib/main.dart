@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:startapp/banner.dart';
+import 'package:startapp/startapp.dart';
 
 void main() => runApp(MyApp());
 

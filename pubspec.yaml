@@ -1,8 +1,8 @@
 name: startapp
-description: A new flutter plugin project.
+description: Flutter plugin for StartApp SDK
 version: 0.1.0
-author: DungVu
 homepage: https://www.facebook.com/momo.prd/
+repository: https://github.com/vdung7/startapp_flutter_plugin
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
