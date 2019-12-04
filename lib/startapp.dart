@@ -28,8 +28,7 @@ class _BannerState extends State<AdBanner> {
           child: AndroidView(
             viewType: PLUGIN_KEY,
             onPlatformViewCreated: _onPlatformViewCreated,
-          )
-      );
+          ));
     }
     return Text('$defaultTargetPlatform is no need showing ads');
   }

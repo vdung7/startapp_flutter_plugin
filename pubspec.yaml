@@ -1,6 +1,6 @@
 name: startapp
-description: Flutter plugin for StartApp SDK
-version: 0.1.0
+description: Flutter plugin for StartApp SDK - Currently only support Android platform
+version: 0.1.0+1
 homepage: https://www.facebook.com/momo.prd/
 repository: https://github.com/vdung7/startapp_flutter_plugin
 
