@@ -17,13 +17,19 @@ class MyAppState extends State<MyApp> {
             appBar: AppBar(title: const Text('StartApp Example')),
             body: Center(
                 child: Column(
-                  children: <Widget>[
-                    Text('Banner sample'),
-                    AdBanner(),
-                  ],
-                )
-            )
-        )
-    );
+              children: <Widget>[
+                Text('Banner sample'),
+
+                // StartApp AdBanner as widget
+                AdBanner(),
+
+                // Display StartApp interstitial ad
+                RaisedButton(
+                    child: Text('Show interstitial ad'),
+                    onPressed: () async {
+                      await StartApp.showInterstitialAd();
+                    }),
+              ],
+            ))));
   }
 }

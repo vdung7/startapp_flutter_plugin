@@ -6,6 +6,14 @@ import 'package:flutter/services.dart';
 typedef void BannerCreatedCallback(BannerController controller);
 const String PLUGIN_KEY = "vn.momo.plugin.startapp.StartAppBannerPlugin";
 
+class StartApp {
+  static const platform = const MethodChannel('vn.momo.biquote/ad');
+  
+  static showInterstitialAd() async {
+    await platform.invokeMethod('showAd');
+  }
+}
+
 class AdBanner extends StatefulWidget {
   const AdBanner({
     Key key,
