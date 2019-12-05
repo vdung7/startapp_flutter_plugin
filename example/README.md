@@ -1,11 +1,3 @@
-# How to use the plugin 
-
-* Add StartApp ID of project to AndroidManifest.xml as `meta-data`:
-```xml
-<meta-data android:name="vn.momo.plugin.startapp.STARTAPP_ID" android:value="\ {your-startapp-id}" />
-```
-
-* Banner as widget
 ```dart
 import 'package:flutter/material.dart';
 import 'package:startapp/startapp.dart';
@@ -26,24 +18,20 @@ class MyAppState extends State<MyApp> {
             appBar: AppBar(title: const Text('StartApp Example')),
             body: Center(
                 child: Column(
-                  children: <Widget>[
-                    Text('Banner sample'),
+              children: <Widget>[
+                Text('Banner sample'),
 
-                    // StartApp AdBanner widget
-                    AdBanner(),
-                  ],
-                )
-            )
-        )
-    );
+                // StartApp AdBanner as widget
+                AdBanner(),
+
+                // Display StartApp interstitial ad
+                RaisedButton(
+                    child: Text('Show interstitial ad'),
+                    onPressed: () async {
+                      await StartApp.showInterstitialAd();
+                    }),
+              ],
+            ))));
   }
 }
-```
-* Load interstitial ad
-```dart
-  static showInterstitialAd() async {
-    if (!App.isInDebugMode) {
-      await platform.invokeMethod('showAd');
-    }
-  }
 ```

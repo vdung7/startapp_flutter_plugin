@@ -1,3 +1,7 @@
+## 0.1.1
+
+* Add show interstitial ad utility method
+
 ## 0.1.0+1
 
 * Update document and configuration follow pub.dev suggestion 
