@@ -1,6 +1,10 @@
 ## Unrelease 
 
+
+## 0.1.0+1
+
 * Add show interstitial ad utility method
+* Update document and configuration follow pub.dev suggestion
 
 ## 0.1.0+1
 
