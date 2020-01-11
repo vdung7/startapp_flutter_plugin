@@ -1,7 +1,9 @@
 # Flutter - StartApp SDK Plugin
 
-Flutter plugin for StartApp SDK
-Currently, this plugin only support Android platform
+Flutter plugin for StartApp SDK.
+
+Currently, this plugin only support Android platform. The plugin is my weekend project, so any contributes to make it
+better are welcome.
 
 ## How to use the plugin 
 
