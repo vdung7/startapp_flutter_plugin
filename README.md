@@ -26,3 +26,8 @@ import 'package:startapp/startapp.dart';
 ...
 await StartApp.showInterstitialAd();
 ```
+
+## Support
+If this package was helpful to you in delivering on your project or you just wanna to support this project, a cup of coffee would be highly appreciated ;-)
+
+[![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/default-green.png)](https://www.buymeacoffee.com/htoOyQV)
