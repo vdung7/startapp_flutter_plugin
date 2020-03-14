@@ -64,7 +64,23 @@ public class StartAppBannerPlugin {
                             result.success(null);
                             break;
                         case "showRewardedAd":
-                            startAppAd.loadAd(StartAppAd.AdMode.REWARDED_VIDEO);
+                            startAppAd.loadAd(StartAppAd.AdMode.REWARDED_VIDEO, new AdEventListener() {
+                                @Override
+                                public void onReceiveAd(Ad ad) {
+                                    startAppAd.showAd();
+                                }
+
+                                @Override
+                                public void onFailedToReceiveAd(Ad arg0) {
+                                    /*
+                                     * Failed to load rewarded video:
+                                     * 1. Check that FullScreenActivity is declared in AndroidManifest.xml:
+                                     * See https://github.com/StartApp-SDK/Documentation/wiki/Android-InApp-Documentation#activities
+                                     * 2. Is android API level above 16?
+                                     */
+                                    Log.e("StartAppPlugin", "Failed to load rewarded video with reason: " + arg0.getErrorMessage());
+                                }
+                            });
                             result.success(null);
                             break;
                         default:
