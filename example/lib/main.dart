@@ -29,6 +29,13 @@ class MyAppState extends State<MyApp> {
                     onPressed: () async {
                       await StartApp.showInterstitialAd();
                     }),
+
+                // Display StartApp rewarded ad
+                RaisedButton(
+                    child: Text('Show rewarded ad'),
+                    onPressed: () async {
+                      await StartApp.showRewardedAd();
+                    }),
               ],
             ))));
   }

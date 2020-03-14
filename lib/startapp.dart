@@ -7,10 +7,14 @@ typedef void BannerCreatedCallback(BannerController controller);
 const String PLUGIN_KEY = "vn.momo.plugin.startapp.StartAppBannerPlugin";
 
 class StartApp {
-  static const platform = const MethodChannel('vn.momo.biquote/ad');
+  static const platform = const MethodChannel('flutter_startapp');
   
   static showInterstitialAd() async {
     await platform.invokeMethod('showAd');
+  }
+
+  static showRewardedAd() async {
+    await platform.invokeMethod('showRewardedAd');
   }
 }
 
