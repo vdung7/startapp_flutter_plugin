@@ -73,11 +73,16 @@ public class StartAppBannerPlugin {
                                 @Override
                                 public void onReceiveAd(Ad ad) {
                                     startAppAd.showAd();
+                                    channel.invokeMethod("onReceiveAd", null);
                                 }
 
                                 @Override
                                 public void onFailedToReceiveAd(Ad arg0) {
-                                    Log.e("StartAppPlugin", "Failed to load rewarded video with reason: " + arg0.getErrorMessage());
+                                    channel.invokeMethod("onFailedToReceiveAd",
+                                            arg0.getErrorMessage());
+                                    Log.e("StartAppPlugin",
+                                            "Failed to load rewarded video with reason: "
+                                                    + arg0.getErrorMessage());
                                 }
                             });
                             result.success(null);

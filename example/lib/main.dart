@@ -10,6 +10,8 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   bool videoCompleted = false;
+  String error = '';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,9 +41,16 @@ class MyAppState extends State<MyApp> {
                         setState(() {
                           videoCompleted = true;
                         });
+                      }, onFailedToReceiveAd: (String error) {
+                        this.error = error;
                       });
                     }),
-                Text(videoCompleted ? 'Video completed' : ''),
+                Text(videoCompleted ? 'Video completed!' : '',
+                  style: TextStyle(color: Colors.green),
+                ),
+                Text(error == '' ? '' : 'Video ad error: $error',
+                  style: TextStyle(color: Colors.red),
+                ),
               ],
             ))));
   }
