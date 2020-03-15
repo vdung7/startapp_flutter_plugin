@@ -1,5 +1,11 @@
 ## Unrelease 
 
+## 0.3.0
+
+* Support showing Rewarded video ad (with necessary callback)
+* Upgrade StartApp SDK to 4.4.1
+* AndroidX compatibility
+
 ## 0.2.0+1
 
 * Update content of README.md
