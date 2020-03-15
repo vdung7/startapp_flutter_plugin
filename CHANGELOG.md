@@ -1,5 +1,9 @@
 ## Unrelease 
 
+## 0.3.0+1
+
+* Update content of README.md
+
 ## 0.3.0
 
 * Support showing Rewarded video ad (with necessary callback)
