@@ -8,13 +8,24 @@ const String PLUGIN_KEY = "vn.momo.plugin.startapp.StartAppBannerPlugin";
 
 class StartApp {
   static const platform = const MethodChannel('flutter_startapp');
-  
+  static VoidCallback onVideoCompleted;
+
   static showInterstitialAd() async {
     await platform.invokeMethod('showAd');
   }
 
-  static showRewardedAd() async {
+  static showRewardedAd({VoidCallback onVideoCompleted}) async {
+    StartApp.onVideoCompleted = onVideoCompleted;
+    platform.setMethodCallHandler(_handleMethod);
     await platform.invokeMethod('showRewardedAd');
+  }
+
+  static Future<dynamic> _handleMethod(MethodCall call) {
+    if (call.method == "onVideoCompleted") {
+      if (onVideoCompleted != null)
+        onVideoCompleted();
+    }
+    return Future<dynamic>.value(null);
   }
 }
 

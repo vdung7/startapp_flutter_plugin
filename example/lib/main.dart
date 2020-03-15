@@ -9,6 +9,7 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
+  bool videoCompleted = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,8 +35,13 @@ class MyAppState extends State<MyApp> {
                 RaisedButton(
                     child: Text('Show rewarded ad'),
                     onPressed: () async {
-                      await StartApp.showRewardedAd();
+                      await StartApp.showRewardedAd(onVideoCompleted: () {
+                        setState(() {
+                          videoCompleted = true;
+                        });
+                      });
                     }),
+                Text(videoCompleted ? 'Video completed' : ''),
               ],
             ))));
   }

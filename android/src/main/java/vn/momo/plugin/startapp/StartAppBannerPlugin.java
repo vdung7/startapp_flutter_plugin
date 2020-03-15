@@ -56,7 +56,8 @@ public class StartAppBannerPlugin {
                 .registerViewFactory(
                         PLUGIN_KEY, new BannerFactory(registrar.messenger()));
 
-        new MethodChannel(registrar.view(), "flutter_startapp").setMethodCallHandler(
+        final MethodChannel channel = new MethodChannel(registrar.view(), "flutter_startapp");
+        channel.setMethodCallHandler(
                 (call, result) -> {
                     switch (call.method) {
                         case "showAd":
@@ -64,6 +65,10 @@ public class StartAppBannerPlugin {
                             result.success(null);
                             break;
                         case "showRewardedAd":
+                            startAppAd.setVideoListener(() -> {
+                                channel.invokeMethod("onVideoCompleted", null);
+                                Log.d("onVideoCompleted", "Complete");
+                            });
                             startAppAd.loadAd(StartAppAd.AdMode.REWARDED_VIDEO, new AdEventListener() {
                                 @Override
                                 public void onReceiveAd(Ad ad) {
