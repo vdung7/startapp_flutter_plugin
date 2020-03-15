@@ -4,13 +4,46 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 typedef void BannerCreatedCallback(BannerController controller);
+typedef StringToVoidFunc = void Function(String);
 const String PLUGIN_KEY = "vn.momo.plugin.startapp.StartAppBannerPlugin";
 
 class StartApp {
-  static const platform = const MethodChannel('vn.momo.biquote/ad');
-  
+  static const platform = const MethodChannel('flutter_startapp');
+  static VoidCallback onVideoCompleted;
+  static VoidCallback onReceiveAd;
+  static StringToVoidFunc onFailedToReceiveAd;
+
   static showInterstitialAd() async {
     await platform.invokeMethod('showAd');
+  }
+
+  static showRewardedAd({VoidCallback onVideoCompleted,
+    VoidCallback onReceiveAd,
+    StringToVoidFunc onFailedToReceiveAd}) async {
+    StartApp.onVideoCompleted = onVideoCompleted;
+    platform.setMethodCallHandler(_handleMethod);
+    await platform.invokeMethod('showRewardedAd');
+  }
+
+  static Future<dynamic> _handleMethod(MethodCall call) {
+    switch (call.method) {
+      case "onVideoCompleted":
+        if (onVideoCompleted != null) {
+          onVideoCompleted();
+        }
+        break;
+      case "onReceiveAd":
+        if (onReceiveAd != null) {
+          onReceiveAd();
+        }
+        break;
+      case "onFailedToReceiveAd":
+        if (onFailedToReceiveAd != null) {
+          onFailedToReceiveAd(call.arguments);
+        }
+        break;
+    }
+    return Future<dynamic>.value(null);
   }
 }
 

@@ -1,3 +1,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="vn.momo.plugin.startapp">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="vn.momo.plugin.startapp">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    <application>
+        <provider
+            android:name="com.startapp.android.publish.adsCommon.StartAppInitProvider"
+            android:authorities="${applicationId}.startappinitprovider"
+            tools:node="remove" />
+        <activity android:name="com.startapp.android.publish.adsCommon.activities.FullScreenActivity"
+            android:theme="@android:style/Theme"
+            tools:replace="android:configChanges"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+    </application>
+
+
 </manifest>

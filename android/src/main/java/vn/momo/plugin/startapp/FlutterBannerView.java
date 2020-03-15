@@ -44,6 +44,9 @@ public class FlutterBannerView implements PlatformView, MethodChannel.MethodCall
                     public void onClick(View banner) {
                         updateContent(banner);
                     }
+
+                    @Override
+                    public void onImpression(View view) {}
                 });
                 banner.loadAd(300, 50);
                 break;
