@@ -20,11 +20,25 @@ import 'package:startapp/startapp.dart';
 // StartApp AdBanner as widget
 AdBanner(),
 ```
+
 * Load interstitial ad
 ```dart
 import 'package:startapp/startapp.dart';
 ...
 await StartApp.showInterstitialAd();
+```
+
+* Load rewarded video ad
+```dart
+import 'package:startapp/startapp.dart';
+...
+await StartApp.showRewardedAd(onVideoCompleted: () {
+    // video completed callback
+}, onReceiveAd: () {
+    // ad received callback
+}, onFailedToReceiveAd: (String error) {
+    // failed to received ad callback
+});
 ```
 
 ## Support
