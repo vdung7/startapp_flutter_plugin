@@ -12,5 +12,11 @@
             android:name="com.startapp.android.publish.adsCommon.StartAppInitProvider"
             android:authorities="${applicationId}.startappinitprovider"
             tools:node="remove" />
+        <activity android:name="com.startapp.android.publish.adsCommon.activities.FullScreenActivity"
+            android:theme="@android:style/Theme"
+            tools:replace="android:configChanges"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
     </application>
+
+
 </manifest>
