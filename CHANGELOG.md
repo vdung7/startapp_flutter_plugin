@@ -1,5 +1,9 @@
 ## Unrelease 
 
+## 0.4.0
+
+* Supporting the new Android plugins APIs (https://flutter.dev/docs/development/packages-and-plugins/plugin-api-migration) 
+
 ## 0.3.0+1
 
 * Update content of README.md
