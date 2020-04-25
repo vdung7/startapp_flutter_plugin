@@ -4,11 +4,12 @@ import android.os.Bundle;
 import android.view.View;
 import io.flutter.app.FlutterActivity;
 import io.flutter.plugins.GeneratedPluginRegistrant;
+import vn.momo.plugin.startapp.StartAppBannerPlugin;
 
-public class MainActivity extends FlutterActivity {
+public class EmbeddingV1Activity extends FlutterActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    GeneratedPluginRegistrant.registerWith(this);
+    StartAppBannerPlugin.registerWith(registrarFor("vn.momo.plugin.startapp.StartAppBannerPlugin"));
   }
 }
