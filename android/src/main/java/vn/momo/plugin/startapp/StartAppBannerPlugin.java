@@ -7,10 +7,10 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.startapp.android.publish.adsCommon.Ad;
-import com.startapp.android.publish.adsCommon.StartAppAd;
-import com.startapp.android.publish.adsCommon.StartAppSDK;
-import com.startapp.android.publish.adsCommon.adListeners.AdEventListener;
+import com.startapp.sdk.adsbase.Ad;
+import com.startapp.sdk.adsbase.StartAppAd;
+import com.startapp.sdk.adsbase.StartAppSDK;
+import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
 
 import androidx.annotation.NonNull;
 
@@ -106,17 +106,7 @@ public class StartAppBannerPlugin implements FlutterPlugin, ActivityAware {
     }
 
     private static void bindActivity(Activity activity) {
-        String startAppId = DEFAULT_STARTAPP_ID;
         Context context = activity.getApplicationContext();
-        try {
-            ApplicationInfo ai = context.getPackageManager()
-                    .getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
-            Bundle bundle = ai.metaData;
-            startAppId = bundle.getString(STARTAPP_ID_KEY, DEFAULT_STARTAPP_ID);
-        } catch (PackageManager.NameNotFoundException ignored) {}
-
-        Log.d("StartAppBannerPlugin", "STARTAPP ID = " + startAppId);
-        StartAppSDK.init(activity, startAppId, false);
         StartAppAd.disableSplash();
 
         mainActivity = activity;

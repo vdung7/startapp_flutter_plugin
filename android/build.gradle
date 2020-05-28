@@ -32,7 +32,7 @@ android {
         disable 'InvalidPackage'
     }
     dependencies {
-        implementation 'com.startapp:inapp-sdk:4.4.1'
+        implementation 'com.startapp:inapp-sdk:4.6.+'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
