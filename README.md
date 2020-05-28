@@ -21,6 +21,11 @@ If you want to disable return ads (they are enabled by default) please add follo
 <meta-data android:name="com.startapp.sdk.RETURN_ADS_ENABLED" android:value="false" />
 ```
 
+If you want to disable splash ads (they are enabled by default) please add following meta-data tag:
+```xml
+<meta-data android:name="vn.momo.plugin.startapp.SPLASH_AD_ENABLED" android:value="false" />
+```
+
 * Banner as widget
 ```dart
 import 'package:startapp/startapp.dart';

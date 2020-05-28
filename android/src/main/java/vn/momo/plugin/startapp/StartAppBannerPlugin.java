@@ -29,8 +29,7 @@ import io.flutter.plugin.platform.PlatformViewRegistry;
  */
 public class StartAppBannerPlugin implements FlutterPlugin, ActivityAware {
     static final String PLUGIN_KEY = "vn.momo.plugin.startapp.StartAppBannerPlugin";
-    private static final String STARTAPP_ID_KEY = "vn.momo.plugin.startapp.STARTAPP_ID";
-    private static final String DEFAULT_STARTAPP_ID = "no-startapp-id";
+    private static final String STARTAPP_SPLASH_AD_ENABLED_KEY = "vn.momo.plugin.startapp.SPLASH_AD_ENABLED";
 
     private static Activity mainActivity;
     private static StartAppAd startAppAd;
@@ -68,7 +67,7 @@ public class StartAppBannerPlugin implements FlutterPlugin, ActivityAware {
 
         platformViewRegistry.registerViewFactory(PLUGIN_KEY, new BannerFactory(messenger));
 
-        final MethodChannel channel = new MethodChannel(/*registrar.view()*/messenger, "flutter_startapp");
+        final MethodChannel channel = new MethodChannel(messenger, "flutter_startapp");
         channel.setMethodCallHandler(
                 (call, result) -> {
                     switch (call.method) {
@@ -107,7 +106,18 @@ public class StartAppBannerPlugin implements FlutterPlugin, ActivityAware {
 
     private static void bindActivity(Activity activity) {
         Context context = activity.getApplicationContext();
-        StartAppAd.disableSplash();
+
+        boolean splashAppEnabled = true;
+        try {
+            ApplicationInfo ai = context.getPackageManager()
+                    .getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            Bundle bundle = ai.metaData;
+            splashAppEnabled = bundle.getBoolean(STARTAPP_SPLASH_AD_ENABLED_KEY, true);
+        } catch (PackageManager.NameNotFoundException ignored) {}
+
+        if (!splashAppEnabled) {
+            StartAppAd.disableSplash();
+        }
 
         mainActivity = activity;
         startAppAd = new StartAppAd(context);
