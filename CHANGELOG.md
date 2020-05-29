@@ -1,4 +1,8 @@
-## Unrelease 
+## 0.5.0
+
+* BREAKING CHANGES: Change the method of setting StartApp ID. Please update as README.md file.
+* Upgrade to StartApp SDK `4.6.+`.
+* Support enable/disable Splash Ad, Return Ad. See README.md for more details.
 
 ## 0.4.0
 
