@@ -11,7 +11,7 @@
         android:label="startapp_example"
         android:icon="@mipmap/ic_launcher">
 
-        <meta-data android:name="com.startapp.sdk.APPLICATION_ID" android:value="205922462" />
+        <meta-data android:name="com.startapp.sdk.APPLICATION_ID" android:value="demo-id" />
         <meta-data android:name="com.startapp.sdk.RETURN_ADS_ENABLED" android:value="false" />
         <meta-data android:name="vn.momo.plugin.startapp.SPLASH_AD_ENABLED" android:value="false" />
 
