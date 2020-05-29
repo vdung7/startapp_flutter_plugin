@@ -7,10 +7,10 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.startapp.android.publish.adsCommon.Ad;
-import com.startapp.android.publish.adsCommon.StartAppAd;
-import com.startapp.android.publish.adsCommon.StartAppSDK;
-import com.startapp.android.publish.adsCommon.adListeners.AdEventListener;
+import com.startapp.sdk.adsbase.Ad;
+import com.startapp.sdk.adsbase.StartAppAd;
+import com.startapp.sdk.adsbase.StartAppSDK;
+import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
 
 import androidx.annotation.NonNull;
 
@@ -29,8 +29,7 @@ import io.flutter.plugin.platform.PlatformViewRegistry;
  */
 public class StartAppBannerPlugin implements FlutterPlugin, ActivityAware {
     static final String PLUGIN_KEY = "vn.momo.plugin.startapp.StartAppBannerPlugin";
-    private static final String STARTAPP_ID_KEY = "vn.momo.plugin.startapp.STARTAPP_ID";
-    private static final String DEFAULT_STARTAPP_ID = "no-startapp-id";
+    private static final String STARTAPP_SPLASH_AD_ENABLED_KEY = "vn.momo.plugin.startapp.SPLASH_AD_ENABLED";
 
     private static Activity mainActivity;
     private static StartAppAd startAppAd;
@@ -68,7 +67,7 @@ public class StartAppBannerPlugin implements FlutterPlugin, ActivityAware {
 
         platformViewRegistry.registerViewFactory(PLUGIN_KEY, new BannerFactory(messenger));
 
-        final MethodChannel channel = new MethodChannel(/*registrar.view()*/messenger, "flutter_startapp");
+        final MethodChannel channel = new MethodChannel(messenger, "flutter_startapp");
         channel.setMethodCallHandler(
                 (call, result) -> {
                     switch (call.method) {
@@ -106,18 +105,23 @@ public class StartAppBannerPlugin implements FlutterPlugin, ActivityAware {
     }
 
     private static void bindActivity(Activity activity) {
-        String startAppId = DEFAULT_STARTAPP_ID;
         Context context = activity.getApplicationContext();
+
+        boolean splashAppEnabled = true;
         try {
             ApplicationInfo ai = context.getPackageManager()
                     .getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
             Bundle bundle = ai.metaData;
-            startAppId = bundle.getString(STARTAPP_ID_KEY, DEFAULT_STARTAPP_ID);
+            splashAppEnabled = bundle.getBoolean(STARTAPP_SPLASH_AD_ENABLED_KEY, true);
         } catch (PackageManager.NameNotFoundException ignored) {}
 
-        Log.d("StartAppBannerPlugin", "STARTAPP ID = " + startAppId);
-        StartAppSDK.init(activity, startAppId, false);
-        StartAppAd.disableSplash();
+        if (!splashAppEnabled) {
+            StartAppAd.disableSplash();
+        }
+
+        // https://github.com/StartApp-SDK/StartApp_InApp_SDK_Example/#set-up-test-ad
+        // NOTE always use test ads during development and testing
+        StartAppSDK.setTestAdsEnabled(BuildConfig.DEBUG);
 
         mainActivity = activity;
         startAppAd = new StartAppAd(context);

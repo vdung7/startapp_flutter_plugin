@@ -7,9 +7,23 @@ better are welcome.
 
 ## How to use the plugin 
 
-* Add StartApp ID of project to AndroidManifest.xml as `meta-data`:
+* Updating AndroidManifest.xml file
+
+_Base on [StartApp SDK document](https://support.startapp.com/hc/en-us/articles/360002411114-Android-Standard-#Step1,AddingandInitializingtheSDKtoYourProject)_
+
+Add following meta-data tag with your StartApp App Id under the <application> section in your manifest file:
 ```xml
-<meta-data android:name="vn.momo.plugin.startapp.STARTAPP_ID" android:value="\ {your-startapp-id}" />
+<meta-data android:name="com.startapp.sdk.APPLICATION_ID" android:value="startapp_app_id" />
+```
+
+If you want to disable return ads (they are enabled by default) please add following meta-data tag:
+```xml
+<meta-data android:name="com.startapp.sdk.RETURN_ADS_ENABLED" android:value="false" />
+```
+
+If you want to disable splash ads (they are enabled by default) please add following meta-data tag:
+```xml
+<meta-data android:name="vn.momo.plugin.startapp.SPLASH_AD_ENABLED" android:value="false" />
 ```
 
 * Banner as widget
