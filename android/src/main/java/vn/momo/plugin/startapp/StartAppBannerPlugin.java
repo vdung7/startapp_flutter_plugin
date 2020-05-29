@@ -119,6 +119,10 @@ public class StartAppBannerPlugin implements FlutterPlugin, ActivityAware {
             StartAppAd.disableSplash();
         }
 
+        // https://github.com/StartApp-SDK/StartApp_InApp_SDK_Example/#set-up-test-ad
+        // NOTE always use test ads during development and testing
+        StartAppSDK.setTestAdsEnabled(BuildConfig.DEBUG);
+
         mainActivity = activity;
         startAppAd = new StartAppAd(context);
     }
