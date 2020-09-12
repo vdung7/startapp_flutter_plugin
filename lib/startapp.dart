@@ -64,8 +64,8 @@ class _BannerState extends State<AdBanner> {
   Widget build(BuildContext context) {
     if (defaultTargetPlatform == TargetPlatform.android) {
       return Container(
-          width: 300.0,
-          height: 70.0,
+          width: 400.0,
+          height: 100.0,
           child: AndroidView(
             viewType: PLUGIN_KEY,
             onPlatformViewCreated: _onPlatformViewCreated,

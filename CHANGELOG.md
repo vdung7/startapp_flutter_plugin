@@ -1,3 +1,7 @@
+## 0.5.1
+
+* Fix Banner not show - Failed to load BANNER ad: NO FILL error (#10)
+
 ## 0.5.0
 
 * BREAKING CHANGES: Change the method of setting StartApp ID. Please update as README.md file.
