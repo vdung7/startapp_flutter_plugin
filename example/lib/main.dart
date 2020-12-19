@@ -42,7 +42,9 @@ class MyAppState extends State<MyApp> {
                           videoCompleted = true;
                         });
                       }, onFailedToReceiveAd: (String error) {
-                        this.error = error;
+                        setState(() {
+                          this.error = error;
+                        });
                       });
                     }),
                 Text(videoCompleted ? 'Video completed!' : '',

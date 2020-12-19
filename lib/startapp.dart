@@ -21,6 +21,8 @@ class StartApp {
     VoidCallback onReceiveAd,
     StringToVoidFunc onFailedToReceiveAd}) async {
     StartApp.onVideoCompleted = onVideoCompleted;
+    StartApp.onReceiveAd = onReceiveAd;
+    StartApp.onFailedToReceiveAd = onFailedToReceiveAd;
     platform.setMethodCallHandler(_handleMethod);
     await platform.invokeMethod('showRewardedAd');
   }
